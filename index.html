@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel City Adventure</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        
+        <!-- UI Overlays -->
+        <div id="conversationUI" class="ui-overlay hidden">
+            <div class="conversation-box">
+                <div id="npcName" class="npc-name"></div>
+                <div id="dialogueText" class="dialogue-text"></div>
+                <div id="dialogueOptions" class="dialogue-options"></div>
+            </div>
+        </div>
+        
+        <div id="battleUI" class="ui-overlay hidden">
+            <div class="battle-screen">
+                <div class="battle-info">
+                    <div class="player-stats">
+                        <h3>Player</h3>
+                        <div class="health-bar">
+                            <div id="playerHealthBar" class="health-fill"></div>
+                        </div>
+                        <span id="playerHealth">100/100</span>
+                    </div>
+                    <div class="enemy-stats">
+                        <h3 id="enemyName">Wild Animal</h3>
+                        <div class="health-bar">
+                            <div id="enemyHealthBar" class="health-fill"></div>
+                        </div>
+                        <span id="enemyHealth">50/50</span>
+                    </div>
+                </div>
+                <div class="battle-actions">
+                    <button id="attackBtn" class="action-btn">Attack</button>
+                    <button id="defendBtn" class="action-btn">Defend</button>
+                    <button id="runBtn" class="action-btn">Run</button>
+                </div>
+                <div id="battleLog" class="battle-log"></div>
+            </div>
+        </div>
+        
+        <!-- Game HUD -->
+        <div id="gameHUD" class="hud">
+            <div class="player-info">
+                <span>HP: <span id="hudHealth">100</span></span>
+                <span>XP: <span id="hudXP">0</span></span>
+                <span>Level: <span id="hudLevel">1</span></span>
+            </div>
+            <div class="controls">
+                <p>Use WASD to move • Space to interact</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Scripts -->
+    <script src="player.js"></script>
+    <script src="npc.js"></script>
+    <script src="battle.js"></script>
+    <script src="ui.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
