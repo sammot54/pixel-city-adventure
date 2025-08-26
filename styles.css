@@ -1,0 +1,223 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a1a2e;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+}
+
+#gameContainer {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameCanvas {
+    border: 2px solid #16213e;
+    background-color: #0f3460;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+/* UI Overlays */
+.ui-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Conversation UI */
+.conversation-box {
+    background-color: #16213e;
+    border: 3px solid #e94560;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 500px;
+    min-width: 400px;
+}
+
+.npc-name {
+    color: #e94560;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.dialogue-text {
+    background-color: #0f3460;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.dialogue-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dialogue-option {
+    background-color: #0f3460;
+    border: 2px solid #16213e;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.dialogue-option:hover {
+    border-color: #e94560;
+    background-color: #16213e;
+}
+
+/* Battle UI */
+.battle-screen {
+    background-color: #16213e;
+    border: 3px solid #e94560;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    min-width: 500px;
+}
+
+.battle-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.player-stats, .enemy-stats {
+    text-align: center;
+}
+
+.player-stats h3, .enemy-stats h3 {
+    color: #e94560;
+    margin-bottom: 10px;
+}
+
+.health-bar {
+    width: 150px;
+    height: 20px;
+    background-color: #0f3460;
+    border: 2px solid #16213e;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.health-fill {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 100%;
+    transition: width 0.3s;
+}
+
+.battle-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.action-btn {
+    background-color: #0f3460;
+    border: 2px solid #16213e;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    border-color: #e94560;
+    background-color: #16213e;
+}
+
+.action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.battle-log {
+    background-color: #0f3460;
+    padding: 10px;
+    border-radius: 5px;
+    max-height: 120px;
+    overflow-y: auto;
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+/* HUD */
+.hud {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(22, 33, 62, 0.9);
+    border: 2px solid #16213e;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 5;
+}
+
+.player-info {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.controls {
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+    #gameCanvas {
+        width: 90vw;
+        height: 67.5vw; /* Maintain 4:3 aspect ratio */
+    }
+}
+
+/* Pixel font styling for retro feel */
+.pixel-text {
+    font-family: monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+/* Animation classes */
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
