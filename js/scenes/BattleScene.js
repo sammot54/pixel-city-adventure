@@ -28,8 +28,8 @@ class BattleScene {
         this.initializeBattle();
         
         // Show battle UI
-        uiSystem.hideHUD();
-        uiSystem.showBattleUI(this.player.name, this.opponent.name);
+        window.uiSystem.hideHUD();
+        window.uiSystem.showBattleUI(this.player.name, this.opponent.name);
         
         // Setup battle moves
         this.setupBattleMoves();
@@ -78,7 +78,7 @@ class BattleScene {
     }
     
     setupBattleMoves() {
-        uiSystem.setupBattleMoves(this.availableMoves, (move, index) => {
+        window.uiSystem.setupBattleMoves(this.availableMoves, (move, index) => {
             this.selectMove(move);
         });
     }
@@ -161,7 +161,7 @@ class BattleScene {
     }
     
     updateHPBars() {
-        uiSystem.updateBattleHP(
+        window.uiSystem.updateBattleHP(
             this.player.battleHP,
             this.player.maxHP,
             this.opponent.battleHP,
@@ -182,14 +182,14 @@ class BattleScene {
             // Play victory sound
             if (audioSystem) audioSystem.playSFX('success');
             
-            uiSystem.showNotification('Victory!', 'success');
+            window.uiSystem.showNotification('Victory!', 'success');
         } else {
             this.addToBattleLog(`${this.player.name} was defeated!`);
             
             // Play defeat sound
             if (audioSystem) audioSystem.playSFX('error');
             
-            uiSystem.showNotification('Defeat!', 'error');
+            window.uiSystem.showNotification('Defeat!', 'error');
         }
         
         // Update player's actual HP
@@ -202,13 +202,13 @@ class BattleScene {
     }
     
     exitBattle() {
-        uiSystem.hideBattleUI();
+        window.uiSystem.hideBattleUI();
         game.changeScene(this.returnScene);
     }
     
     exit() {
         Utils.log('Exiting Battle Scene');
-        uiSystem.hideBattleUI();
+        window.uiSystem.hideBattleUI();
         audioSystem.stopMusic();
     }
     

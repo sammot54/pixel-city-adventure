@@ -28,8 +28,8 @@ class CharacterSelectScene {
         Utils.log('Entered Character Select Scene');
         
         // Show character select menu
-        uiSystem.hideAllMenus();
-        uiSystem.showMenu('characterSelect');
+        window.uiSystem.hideAllMenus();
+        window.uiSystem.showMenu('characterSelect');
         
         // Populate character grid
         this.populateCharacterGrid();
@@ -41,7 +41,7 @@ class CharacterSelectScene {
     
     exit() {
         Utils.log('Exiting Character Select Scene');
-        uiSystem.hideAllMenus();
+        window.uiSystem.hideAllMenus();
     }
     
     populateCharacterGrid() {
@@ -180,7 +180,7 @@ class CharacterSelectScene {
     
     handleSelectCharacter() {
         if (!this.selectedCharacter) {
-            uiSystem.showNotification('Please select a character first!', 'error');
+            window.uiSystem.showNotification('Please select a character first!', 'error');
             return;
         }
         

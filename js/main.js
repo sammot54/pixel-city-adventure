@@ -108,6 +108,9 @@ class Game {
         // Initialize save system
         window.saveSystem = new SaveSystem();
         
+        // Initialize input system
+        window.inputSystem = new InputSystem();
+        
         // Load sprites
         await spriteLoader.loadAllCharacterSprites();
         
@@ -144,9 +147,9 @@ class Game {
         const savedSettings = Utils.loadFromLocalStorage(CONSTANTS.STORAGE.SETTINGS);
         if (savedSettings) {
             this.gameData.settings = { ...this.gameData.settings, ...savedSettings };
-            audioSystem.setMasterVolume(this.gameData.settings.masterVolume);
-            audioSystem.setMusicVolume(this.gameData.settings.musicVolume);
-            audioSystem.setSFXVolume(this.gameData.settings.sfxVolume);
+            window.audioSystem.setMasterVolume(this.gameData.settings.masterVolume);
+            window.audioSystem.setMusicVolume(this.gameData.settings.musicVolume);
+            window.audioSystem.setSFXVolume(this.gameData.settings.sfxVolume);
         }
     }
     
@@ -217,7 +220,7 @@ class Game {
     
     update(deltaTime) {
         // Update input system
-        inputSystem.update();
+        window.inputSystem.update();
         
         // Update current scene
         if (this.currentScene) {
@@ -225,10 +228,10 @@ class Game {
         }
         
         // Update UI system
-        uiSystem.update(deltaTime);
+        window.uiSystem.update(deltaTime);
         
         // Update audio system
-        audioSystem.update(deltaTime);
+        window.audioSystem.update(deltaTime);
         
         // Handle global input
         this.handleGlobalInput();
@@ -236,53 +239,53 @@ class Game {
     
     handleGlobalInput() {
         // Toggle debug mode
-        if (inputSystem.isKeyPressed('`')) {
-            renderSystem.toggleDebugMode();
+        if (window.inputSystem.isKeyPressed('`')) {
+            window.renderSystem.toggleDebugMode();
         }
         
         // Toggle FPS display
-        if (inputSystem.isKeyPressed('F3')) {
-            renderSystem.toggleFPSDisplay();
+        if (window.inputSystem.isKeyPressed('F3')) {
+            window.renderSystem.toggleFPSDisplay();
         }
         
         // Quick save/load (for testing)
-        if (inputSystem.isKeyPressed('F5')) {
+        if (window.inputSystem.isKeyPressed('F5')) {
             this.quickSave();
         }
         
-        if (inputSystem.isKeyPressed('F9')) {
+        if (window.inputSystem.isKeyPressed('F9')) {
             this.quickLoad();
         }
     }
     
     render(deltaTime) {
         // Check if renderSystem exists
-        if (!renderSystem) {
+        if (!window.renderSystem) {
             console.error('RenderSystem not initialized');
             return;
         }
         
         // Clear canvas
-        renderSystem.clear();
+        window.renderSystem.clear();
         
         // Render current scene
         if (this.currentScene) {
-            this.currentScene.render(renderSystem);
+            this.currentScene.render(window.renderSystem);
         }
         
         // Render UI overlays
-        if (uiSystem) {
-            uiSystem.render(renderSystem);
+        if (window.uiSystem) {
+            window.uiSystem.render(window.renderSystem);
         }
         
         // Render virtual gamepad on mobile
-        if (inputSystem) {
-            inputSystem.drawVirtualGamepad(this.ctx);
+        if (window.inputSystem) {
+            window.inputSystem.drawVirtualGamepad(this.ctx);
         }
         
         // Render debug info
-        renderSystem.drawFPS(deltaTime);
-        renderSystem.drawDebugGrid();
+        window.renderSystem.drawFPS(deltaTime);
+        window.renderSystem.drawDebugGrid();
     }
     
     // Create new game
@@ -322,10 +325,10 @@ class Game {
         const success = Utils.saveToLocalStorage(CONSTANTS.STORAGE.SAVE_GAME + '_' + slotName, saveData);
         if (success) {
             Utils.log(`Game saved to slot: ${slotName}`);
-            uiSystem.showNotification('Game Saved!');
+            window.uiSystem.showNotification('Game Saved!');
         } else {
             Utils.log(`Failed to save game to slot: ${slotName}`, 'error');
-            uiSystem.showNotification('Failed to save game!', 'error');
+            window.uiSystem.showNotification('Failed to save game!', 'error');
         }
         
         return success;
@@ -352,12 +355,12 @@ class Game {
             this.changeScene(sceneName);
             
             Utils.log(`Game loaded from slot: ${slotName}`);
-            uiSystem.showNotification('Game Loaded!');
+            window.uiSystem.showNotification('Game Loaded!');
             return true;
             
         } catch (error) {
             Utils.log(`Failed to load game: ${error.message}`, 'error');
-            uiSystem.showNotification('Failed to load game!', 'error');
+            window.uiSystem.showNotification('Failed to load game!', 'error');
             return false;
         }
     }

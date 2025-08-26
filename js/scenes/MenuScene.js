@@ -66,9 +66,9 @@ class MenuScene {
         Utils.log('Entered Menu Scene');
         
         // Show main menu
-        uiSystem.hideAllMenus();
-        uiSystem.showMenu('mainMenu');
-        uiSystem.hideHUD();
+        window.uiSystem.hideAllMenus();
+        window.uiSystem.showMenu('mainMenu');
+        window.uiSystem.hideHUD();
         
         // Stop any background music and play menu music
         // (We'll add actual music files later)
@@ -79,7 +79,7 @@ class MenuScene {
     
     exit() {
         Utils.log('Exiting Menu Scene');
-        uiSystem.hideAllMenus();
+        window.uiSystem.hideAllMenus();
     }
     
     setupAudioInteraction() {
@@ -148,7 +148,7 @@ class MenuScene {
                 <label>Music Volume: <input type="range" id="musicVolumeSlider" min="0" max="1" step="0.1" value="${game.gameData.settings.musicVolume}"></label><br><br>
                 <label>SFX Volume: <input type="range" id="sfxVolumeSlider" min="0" max="1" step="0.1" value="${game.gameData.settings.sfxVolume}"></label><br><br>
                 <button onclick="game.scenes['menu'].applySettings()">Apply</button>
-                <button onclick="uiSystem.showMenu('mainMenu')">Back</button>
+                <button onclick="window.uiSystem.showMenu('mainMenu')">Back</button>
             </div>
         `;
         
@@ -187,7 +187,7 @@ class MenuScene {
             this.setupEventListeners(); // Re-setup event listeners
         }
         
-        uiSystem.showNotification('Settings saved!', 'success');
+        window.uiSystem.showNotification('Settings saved!', 'success');
     }
     
     update(deltaTime) {

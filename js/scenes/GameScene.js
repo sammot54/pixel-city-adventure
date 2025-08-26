@@ -16,8 +16,8 @@ class GameScene {
         }
         
         // Show HUD
-        uiSystem.hideAllMenus();
-        uiSystem.showHUD();
+        window.uiSystem.hideAllMenus();
+        window.uiSystem.showHUD();
         
         // Setup camera to follow player
         if (game.player && this.camera) {
@@ -25,7 +25,7 @@ class GameScene {
         }
         
         // Play background music (placeholder)
-        // audioSystem.playMusic('downtown_theme.mp3');
+        // window.audioSystem.playMusic('downtown_theme.mp3');
     }
     
     async initialize() {
@@ -33,7 +33,7 @@ class GameScene {
         
         // Create camera
         this.camera = new Camera(0, 0, CONSTANTS.CANVAS_WIDTH, CONSTANTS.CANVAS_HEIGHT);
-        renderSystem.setCamera(this.camera);
+        window.renderSystem.setCamera(this.camera);
         
         // Create basic map
         this.map = new Map(32, 24);
@@ -64,8 +64,8 @@ class GameScene {
     
     exit() {
         Utils.log('Exiting Game Scene');
-        uiSystem.hideHUD();
-        audioSystem.stopMusic();
+        window.uiSystem.hideHUD();
+        window.audioSystem.stopMusic();
     }
     
     update(deltaTime) {
@@ -97,17 +97,17 @@ class GameScene {
         if (!game.player) return;
         
         // Handle interaction
-        if (inputSystem.isInteractPressed()) {
+        if (window.inputSystem.isInteractPressed()) {
             game.player.interact();
         }
         
         // Handle inventory
-        if (inputSystem.isInventoryPressed()) {
+        if (window.inputSystem.isInventoryPressed()) {
             this.toggleInventory();
         }
         
         // Handle menu
-        if (inputSystem.isMenuPressed()) {
+        if (window.inputSystem.isMenuPressed()) {
             this.showPauseMenu();
         }
     }
@@ -115,9 +115,9 @@ class GameScene {
     toggleInventory() {
         const inventory = document.getElementById('inventory');
         if (inventory && !inventory.classList.contains('hidden')) {
-            uiSystem.hideInventory();
+            window.uiSystem.hideInventory();
         } else {
-            uiSystem.showInventory();
+            window.uiSystem.showInventory();
         }
     }
     
