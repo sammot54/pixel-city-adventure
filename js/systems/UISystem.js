@@ -21,7 +21,20 @@ class UISystem {
     
     showXPGain(amount) {
         this.showNotification(`+${amount} XP!`, 'xp');
-        if (audioSystem) audioSystem.playSFX('xp');
+        if (window.audioSystem) window.window.audioSystem.playSFX('xp');
+    }
+    
+    // Show floating text effect
+    showFloatingText(text, color = '#4299e1') {
+        console.log(`Floating text: ${text} (${color})`);
+        // For now, just show as notification
+        this.showNotification(text, 'info', 1500);
+    }
+    
+    // Show level up effect
+    showLevelUpEffect() {
+        console.log('Level up effect triggered');
+        // Visual effect would go here
     }
     
     showLevelUpNotification() {
@@ -29,14 +42,31 @@ class UISystem {
         const notification = document.createElement('div');
         notification.className = 'level-up-notification';
         notification.textContent = 'LEVEL UP!';
+        notification.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #000;
+            padding: 20px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            border: 3px solid #ffd700;
+            border-radius: 10px;
+            z-index: 10000;
+            animation: levelUpBounce 2s ease-out;
+        `;
         document.body.appendChild(notification);
         
         // Remove after animation
         setTimeout(() => {
-            document.body.removeChild(notification);
+            if (notification.parentNode) {
+                document.body.removeChild(notification);
+            }
         }, 2000);
         
-        if (audioSystem) audioSystem.playSFX('levelup');
+        if (window.audioSystem) window.window.audioSystem.playSFX('levelup');
     }
     
     // HUD management
@@ -124,7 +154,7 @@ class UISystem {
         
         const selectedOption = this.currentDialogue.options[index];
         
-        if (audioSystem) audioSystem.playSFX('click');
+        if (audioSystem) window.audioSystem.playSFX('click');
         
         // Hide dialogue
         this.hideDialogue();
@@ -253,7 +283,7 @@ class UISystem {
             const moveButton = Utils.createElement('button', 'battle-move', move.name);
             moveButton.title = move.description || '';
             moveButton.addEventListener('click', () => {
-                if (audioSystem) audioSystem.playSFX('click');
+                if (audioSystem) window.audioSystem.playSFX('click');
                 callback(move, index);
             });
             battleMoves.appendChild(moveButton);

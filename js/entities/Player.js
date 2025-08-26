@@ -77,7 +77,7 @@ class Player extends Entity {
     }
     
     handleMovementInput() {
-        const movementVector = inputSystem.getMovementVector();
+        const movementVector = window.inputSystem.getMovementVector();
         
         if (movementVector.x !== 0 || movementVector.y !== 0) {
             this.setVelocity(
@@ -113,8 +113,8 @@ class Player extends Entity {
         }
         
         // Show XP gain effect
-        uiSystem.showXPGain(amount);
-        uiSystem.updateHUD();
+        window.uiSystem.showXPGain(amount);
+        window.uiSystem.updateHUD();
     }
     
     levelUp() {
@@ -129,7 +129,7 @@ class Player extends Entity {
         this.currentHP += (this.maxHP - oldMaxHP); // Heal the difference
         
         // Show level up notification
-        uiSystem.showLevelUpNotification();
+        window.uiSystem.showLevelUpNotification();
         
         Utils.log(`Player reached level ${this.level}!`);
     }
@@ -171,7 +171,7 @@ class Player extends Entity {
             this.handleDeath();
         }
         
-        uiSystem.updateHUD();
+        window.uiSystem.updateHUD();
         return damage;
     }
     
@@ -180,7 +180,7 @@ class Player extends Entity {
         this.currentHP = Math.min(this.maxHP, this.currentHP + healing);
         
         Utils.log(`Player healed ${healing} HP`);
-        uiSystem.updateHUD();
+        window.uiSystem.updateHUD();
         return healing;
     }
     
@@ -230,7 +230,7 @@ class Player extends Entity {
         this.currentMission = mission;
         mission.start();
         Utils.log(`Started mission: ${mission.title}`);
-        uiSystem.updateHUD();
+        window.uiSystem.updateHUD();
     }
     
     completeMission() {
@@ -249,7 +249,7 @@ class Player extends Entity {
             }
             
             Utils.log(`Completed mission: ${mission.title}`);
-            uiSystem.updateHUD();
+            window.uiSystem.updateHUD();
             
             return mission;
         }
