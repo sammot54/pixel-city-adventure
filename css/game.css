@@ -1,0 +1,358 @@
+/* Game-specific UI styles */
+
+/* HUD styles */
+#hud {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 100;
+}
+
+#playerStats {
+    background: rgba(26, 32, 44, 0.9);
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 2px solid #4a5568;
+    pointer-events: auto;
+}
+
+.stat-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.stat-bar:last-child {
+    margin-bottom: 0;
+}
+
+.bar {
+    width: 100px;
+    height: 12px;
+    background: #2d3748;
+    border: 1px solid #4a5568;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+    background: linear-gradient(90deg, #48bb78 0%, #38a169 100%);
+    transition: width 0.3s ease;
+}
+
+#hpBar {
+    background: linear-gradient(90deg, #e53e3e 0%, #c53030 100%);
+}
+
+#xpBar {
+    background: linear-gradient(90deg, #4299e1 0%, #3182ce 100%);
+}
+
+#missionInfo {
+    background: rgba(26, 32, 44, 0.9);
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 2px solid #4a5568;
+    max-width: 300px;
+}
+
+#currentMission {
+    font-size: 0.9rem;
+    color: #e2e8f0;
+}
+
+/* Dialogue Box */
+.dialogue-box {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 600px;
+    background: rgba(26, 32, 44, 0.95);
+    border: 3px solid #4a5568;
+    border-radius: 10px;
+    padding: 20px;
+    pointer-events: auto;
+}
+
+#dialogueText {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    color: #e2e8f0;
+}
+
+.dialogue-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dialogue-option {
+    padding: 8px 15px;
+    background: rgba(45, 55, 72, 0.8);
+    border: 2px solid #4a5568;
+    border-radius: 5px;
+    color: #e2e8f0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.dialogue-option:hover {
+    background: rgba(66, 153, 225, 0.3);
+    border-color: #63b3ed;
+}
+
+/* Battle UI */
+.battle-ui {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(26, 32, 44, 0.95);
+    border-top: 3px solid #4a5568;
+    padding: 20px;
+    pointer-events: auto;
+}
+
+.battle-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.player-info, .opponent-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.battle-hp-bar {
+    width: 150px;
+    height: 20px;
+    background: #2d3748;
+    border: 2px solid #4a5568;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.hp-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #e53e3e 0%, #c53030 100%);
+    transition: width 0.3s ease;
+}
+
+.battle-actions {
+    text-align: center;
+}
+
+.battle-moves {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.battle-move {
+    padding: 15px;
+    background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.battle-move:hover {
+    background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);
+    transform: translateY(-2px);
+}
+
+.battle-move:disabled {
+    background: #4a5568;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Inventory */
+.inventory {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    max-width: 90vw;
+    background: rgba(26, 32, 44, 0.95);
+    border: 3px solid #4a5568;
+    border-radius: 10px;
+    padding: 20px;
+    pointer-events: auto;
+}
+
+.inventory h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #90cdf4;
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.inventory-slot {
+    width: 50px;
+    height: 50px;
+    background: #2d3748;
+    border: 2px solid #4a5568;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.inventory-slot:hover {
+    border-color: #63b3ed;
+}
+
+.inventory-slot.occupied {
+    background: rgba(66, 153, 225, 0.2);
+    border-color: #4299e1;
+}
+
+#closeInventoryBtn {
+    width: 100%;
+}
+
+/* Visual effects */
+.level-up-notification {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #f6e05e 0%, #d69e2e 100%);
+    color: #744210;
+    padding: 20px 30px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    animation: levelUpPulse 2s ease-out forwards;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+@keyframes levelUpPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    20% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+    80% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+}
+
+.xp-gain {
+    position: absolute;
+    color: #4299e1;
+    font-weight: bold;
+    font-size: 1.2rem;
+    pointer-events: none;
+    animation: xpFloat 2s ease-out forwards;
+}
+
+@keyframes xpFloat {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+}
+
+/* Mobile responsiveness for game UI */
+@media (max-width: 768px) {
+    #hud {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    #playerStats, #missionInfo {
+        font-size: 0.9rem;
+    }
+    
+    .bar {
+        width: 80px;
+        height: 10px;
+    }
+    
+    .dialogue-box {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    #dialogueText {
+        font-size: 1rem;
+    }
+    
+    .battle-moves {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .inventory {
+        width: 95vw;
+    }
+    
+    .inventory-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .battle-hp-bar {
+        width: 120px;
+        height: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .inventory-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .inventory-slot {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .battle-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+}
