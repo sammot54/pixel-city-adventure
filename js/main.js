@@ -4,10 +4,12 @@ class Game {
         this.canvas = null;
         this.ctx = null;
         this.currentScene = null;
-        this.scenes = new Map();
         this.lastTime = 0;
         this.running = false;
         this.initialized = false;
+        
+        // Initialize scenes as object instead of Map
+        this.scenes = {};
         
         // Game state
         this.player = null;
@@ -113,13 +115,29 @@ class Game {
     }
     
     createScenes() {
-        // Create scene instances
-        this.scenes.set(CONSTANTS.SCENES.MENU, new MenuScene());
-        this.scenes.set(CONSTANTS.SCENES.CHARACTER_SELECT, new CharacterSelectScene());
-        this.scenes.set(CONSTANTS.SCENES.GAME, new GameScene());
-        this.scenes.set(CONSTANTS.SCENES.BATTLE, new BattleScene());
+        // Debug Map availability
+        console.log('Map constructor:', Map);
+        console.log('Map prototype:', Map.prototype);
+        console.log('Map prototype.set:', Map.prototype.set);
         
-        Utils.log('Scenes created');
+        // Try using an object instead of Map
+        const scenesObj = {};
+        
+        try {
+            // Create scene instances using object
+            scenesObj[CONSTANTS.SCENES.MENU] = new MenuScene();
+            scenesObj[CONSTANTS.SCENES.CHARACTER_SELECT] = new CharacterSelectScene();
+            scenesObj[CONSTANTS.SCENES.GAME] = new GameScene();
+            scenesObj[CONSTANTS.SCENES.BATTLE] = new BattleScene();
+            
+            // Assign to this.scenes
+            this.scenes = scenesObj;
+            
+            Utils.log('Scenes created successfully using object');
+        } catch (error) {
+            console.error('Error creating scenes:', error);
+            throw error;
+        }
     }
     
     loadSettings() {
@@ -137,7 +155,7 @@ class Game {
     }
     
     changeScene(sceneName, data = null) {
-        const newScene = this.scenes.get(sceneName);
+        const newScene = this.scenes[sceneName]; // Use object accessor instead of Map.get
         if (!newScene) {
             Utils.log(`Scene '${sceneName}' not found`, 'error');
             return false;
@@ -238,6 +256,12 @@ class Game {
     }
     
     render(deltaTime) {
+        // Check if renderSystem exists
+        if (!renderSystem) {
+            console.error('RenderSystem not initialized');
+            return;
+        }
+        
         // Clear canvas
         renderSystem.clear();
         
@@ -247,10 +271,14 @@ class Game {
         }
         
         // Render UI overlays
-        uiSystem.render(renderSystem);
+        if (uiSystem) {
+            uiSystem.render(renderSystem);
+        }
         
         // Render virtual gamepad on mobile
-        inputSystem.drawVirtualGamepad(this.ctx);
+        if (inputSystem) {
+            inputSystem.drawVirtualGamepad(this.ctx);
+        }
         
         // Render debug info
         renderSystem.drawFPS(deltaTime);
@@ -345,7 +373,7 @@ class Game {
     
     // Get current scene name
     getCurrentSceneName() {
-        for (const [name, scene] of this.scenes) {
+        for (const [name, scene] of Object.entries(this.scenes)) { // Use Object.entries instead of Map iteration
             if (scene === this.currentScene) {
                 return name;
             }

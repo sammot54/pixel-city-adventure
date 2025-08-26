@@ -147,7 +147,7 @@ class MenuScene {
                 <label>Master Volume: <input type="range" id="masterVolumeSlider" min="0" max="1" step="0.1" value="${game.gameData.settings.masterVolume}"></label><br><br>
                 <label>Music Volume: <input type="range" id="musicVolumeSlider" min="0" max="1" step="0.1" value="${game.gameData.settings.musicVolume}"></label><br><br>
                 <label>SFX Volume: <input type="range" id="sfxVolumeSlider" min="0" max="1" step="0.1" value="${game.gameData.settings.sfxVolume}"></label><br><br>
-                <button onclick="game.scenes.get('menu').applySettings()">Apply</button>
+                <button onclick="game.scenes['menu'].applySettings()">Apply</button>
                 <button onclick="uiSystem.showMenu('mainMenu')">Back</button>
             </div>
         `;

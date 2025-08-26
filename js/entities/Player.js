@@ -57,10 +57,20 @@ class Player extends Entity {
     }
     
     update(deltaTime) {
-        super.update(deltaTime);
-        
         // Handle input for movement
         this.handleMovementInput();
+        
+        // Store original position
+        const originalX = this.x;
+        const originalY = this.y;
+        
+        // Apply movement
+        super.update(deltaTime);
+        
+        // Check collision with map if we have access to the current scene
+        if (game.currentScene && game.currentScene.map) {
+            Collision.resolveMapCollision(this, game.currentScene.map, deltaTime);
+        }
         
         // Regenerate HP slowly
         this.regenerateHP(deltaTime);
