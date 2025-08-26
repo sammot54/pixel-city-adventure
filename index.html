@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel City Adventure</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <div id="startScreen">
+            <h1>Pixel City Adventure</h1>
+            <p>Welcome to the pixel city! Complete missions, talk to NPCs, and explore the world.</p>
+            <button id="startButton">Start Game</button>
+        </div>
+        
+        <div id="gameScreen" style="display: none;">
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+            <div id="ui">
+                <div id="playerInfo">
+                    <div>Health: <span id="health">100</span></div>
+                    <div>Level: <span id="level">1</span></div>
+                    <div>Mission: <span id="currentMission">Talk to the NPC</span></div>
+                </div>
+                <div id="controls">
+                    <p>Use WASD or Arrow Keys to move</p>
+                    <p>Press SPACE to interact with NPCs</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>

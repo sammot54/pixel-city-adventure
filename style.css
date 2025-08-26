@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#gameContainer {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#startScreen {
+    text-align: center;
+    max-width: 400px;
+}
+
+#startScreen h1 {
+    color: #4CAF50;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#startScreen p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+#startButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#startButton:hover {
+    background-color: #45a049;
+}
+
+#gameScreen {
+    position: relative;
+}
+
+#gameCanvas {
+    border: 2px solid #666;
+    background-color: #111;
+    display: block;
+}
+
+#ui {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+#playerInfo {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #666;
+}
+
+#playerInfo div {
+    margin-bottom: 5px;
+}
+
+#controls {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #666;
+    text-align: right;
+}
+
+#controls p {
+    margin: 5px 0;
+    color: #ccc;
+    font-size: 12px;
+}
+
+#health {
+    color: #ff4444;
+    font-weight: bold;
+}
+
+#level {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+#currentMission {
+    color: #ffaa00;
+    font-weight: bold;
+}
