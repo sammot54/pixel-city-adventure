@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel City Adventure</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        <div id="ui">
+            <div id="hud" class="hidden">
+                <div id="playerStats">
+                    <div class="stat-bar">
+                        <span>HP:</span>
+                        <div class="bar">
+                            <div id="hpBar" class="fill"></div>
+                        </div>
+                        <span id="hpText">100/100</span>
+                    </div>
+                    <div class="stat-bar">
+                        <span>XP:</span>
+                        <div class="bar">
+                            <div id="xpBar" class="fill"></div>
+                        </div>
+                        <span id="levelText">Level 1</span>
+                    </div>
+                </div>
+                <div id="missionInfo">
+                    <div id="currentMission">No active mission</div>
+                </div>
+            </div>
+            
+            <div id="mainMenu" class="menu">
+                <h1>Pixel City Adventure</h1>
+                <div class="menu-buttons">
+                    <button id="startGameBtn" class="menu-btn">Start Game</button>
+                    <button id="characterSelectBtn" class="menu-btn">Character Select</button>
+                    <button id="settingsBtn" class="menu-btn">Settings</button>
+                </div>
+            </div>
+            
+            <div id="characterSelect" class="menu hidden">
+                <h2>Choose Your Character</h2>
+                <div id="characterGrid" class="character-grid">
+                    <!-- Characters will be populated by JavaScript -->
+                </div>
+                <div class="menu-buttons">
+                    <button id="selectCharacterBtn" class="menu-btn">Select Character</button>
+                    <button id="backToMenuBtn" class="menu-btn">Back to Menu</button>
+                </div>
+            </div>
+            
+            <div id="dialogueBox" class="dialogue-box hidden">
+                <div id="dialogueText"></div>
+                <div id="dialogueOptions" class="dialogue-options">
+                    <!-- Options will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <div id="battleUI" class="battle-ui hidden">
+                <div class="battle-info">
+                    <div class="player-info">
+                        <span id="playerName">Player</span>
+                        <div class="battle-hp-bar">
+                            <div id="playerBattleHp" class="hp-fill"></div>
+                        </div>
+                    </div>
+                    <div class="opponent-info">
+                        <span id="opponentName">Opponent</span>
+                        <div class="battle-hp-bar">
+                            <div id="opponentBattleHp" class="hp-fill"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="battle-actions">
+                    <div id="battleMoves" class="battle-moves">
+                        <!-- Battle moves will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <div id="inventory" class="inventory hidden">
+                <h3>Inventory</h3>
+                <div id="inventoryGrid" class="inventory-grid">
+                    <!-- Items will be populated by JavaScript -->
+                </div>
+                <button id="closeInventoryBtn" class="menu-btn">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Audio elements -->
+    <audio id="backgroundMusic" loop>
+        <!-- Music sources will be added dynamically -->
+    </audio>
+    
+    <!-- Core game scripts -->
+    <script src="js/utils/Constants.js"></script>
+    <script src="js/utils/Utils.js"></script>
+    <script src="js/utils/SpriteLoader.js"></script>
+    <script src="js/systems/InputSystem.js"></script>
+    <script src="js/systems/RenderSystem.js"></script>
+    <script src="js/systems/AudioSystem.js"></script>
+    <script src="js/systems/SaveSystem.js"></script>
+    <script src="js/systems/UISystem.js"></script>
+    <script src="js/entities/Entity.js"></script>
+    <script src="js/entities/Player.js"></script>
+    <script src="js/entities/NPC.js"></script>
+    <script src="js/world/Collision.js"></script>
+    <script src="js/world/Camera.js"></script>
+    <script src="js/world/Map.js"></script>
+    <script src="js/game/InventorySystem.js"></script>
+    <script src="js/game/ExperienceSystem.js"></script>
+    <script src="js/game/MissionSystem.js"></script>
+    <script src="js/game/BattleSystem.js"></script>
+    <script src="js/scenes/MenuScene.js"></script>
+    <script src="js/scenes/CharacterSelectScene.js"></script>
+    <script src="js/scenes/GameScene.js"></script>
+    <script src="js/scenes/BattleScene.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
